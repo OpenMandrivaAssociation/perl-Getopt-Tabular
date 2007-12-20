@@ -15,6 +15,7 @@ Source:         http://www.cpan.org/modules/by-module/Algorithm/%{module}-%{vers
 BuildRequires:	perl-devel
 %endif
 BuildArch:	    noarch
+BuildRoot:	    %{_tmppath}/%{name}-%{version}
 
 %description
 Getopt::Tabular is a Perl 5 module for table-driven argument parsing, vaguely
