@@ -1,7 +1,7 @@
 %define module	Getopt-Tabular
 %define name	perl-%{module}
 %define version 0.3
-%define release %mkrel 5
+%define release %mkrel 7
 
 Name:		    %{name}
 Version:	    %{version}
