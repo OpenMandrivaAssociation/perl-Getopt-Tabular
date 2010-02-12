@@ -1,21 +1,21 @@
-%define module	Getopt-Tabular
-%define name	perl-%{module}
-%define version 0.3
-%define release %mkrel 8
+%define upstream_name	 Getopt-Tabular
+%define upstream_version 0.3
 
-Name:		    %{name}
-Version:	    %{version}
-Release:	    %{release}
-Summary:	    Table-driven argument parsing for Perl 5
-License:	    GPL or Artistic
-Group:		    Development/Perl
-URL:            http://search.cpan.org/dist/%{module}
-Source:         http://www.cpan.org/modules/by-module/Algorithm/%{module}-%{version}.tar.bz2
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
+Summary:	Table-driven argument parsing for Perl 5
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:        http://search.cpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/Algorithm/%{upstream_name}-%{upstream_version}.tar.bz2
+
 %if %{mdkversion} < 1010
 BuildRequires:	perl-devel
 %endif
 BuildArch:	    noarch
-BuildRoot:	    %{_tmppath}/%{name}-%{version}
+BuildRoot:	    %{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 Getopt::Tabular is a Perl 5 module for table-driven argument parsing, vaguely
@@ -31,14 +31,14 @@ If there are any invalid options, GetOptions will print an error message and
 return 0.
 
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
-%{__make} test
+%make test
 
 %install
 rm -rf %{buildroot}
@@ -52,4 +52,3 @@ rm -rf %{buildroot}
 %doc Changes README
 %{perl_vendorlib}/Getopt
 %{_mandir}/*/*
-
