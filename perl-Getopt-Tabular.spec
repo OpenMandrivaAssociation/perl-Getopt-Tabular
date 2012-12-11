@@ -1,21 +1,18 @@
 %define upstream_name	 Getopt-Tabular
 %define upstream_version 0.3
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 1
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	2
 
 Summary:	Table-driven argument parsing for Perl 5
 License:	GPL+ or Artistic
 Group:		Development/Perl
 Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Algorithm/%{upstream_name}-%{upstream_version}.tar.bz2
+Source0:	http://www.cpan.org/modules/by-module/Algorithm/%{upstream_name}-%{upstream_version}.tar.bz2
 
-%if %{mdkversion} < 1010
 BuildRequires:	perl-devel
-%endif
-BuildArch:	    noarch
-BuildRoot:	    %{_tmppath}/%{name}-%{version}-%{release}
+BuildArch:	noarch
 
 %description
 Getopt::Tabular is a Perl 5 module for table-driven argument parsing, vaguely
@@ -34,21 +31,45 @@ return 0.
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+perl Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
 %make test
 
 %install
-rm -rf %{buildroot}
-%{makeinstall_std}
-
-%clean 
-rm -rf %{buildroot}
+%makeinstall_std
 
 %files
-%defattr(-,root,root)
 %doc Changes README
 %{perl_vendorlib}/Getopt
 %{_mandir}/*/*
+
+%changelog
+* Fri Feb 12 2010 Jérôme Quelin <jquelin@mandriva.org> 0.300.0-1mdv2010.1
++ Revision: 504892
+- rebuild using %%perl_convert_version
+
+* Fri Sep 04 2009 Thierry Vignaud <tv@mandriva.org> 0.3-8mdv2010.0
++ Revision: 430460
+- rebuild
+
+* Wed Jul 23 2008 Thierry Vignaud <tv@mandriva.org> 0.3-7mdv2009.0
++ Revision: 241442
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Sun Aug 19 2007 Guillaume Rousse <guillomovitch@mandriva.org> 0.3-5mdv2008.0
++ Revision: 67060
+- rebuild
+
+
+* Thu Aug 03 2006 Guillaume Rousse <guillomovitch@mandriva.org> 0.3-4mdv2007.0
+- Rebuild
+
+* Mon Jun 20 2005 Guillaume Rousse <guillomovitch@mandriva.org> 0.3-3mdk 
+- first mdk release
+
