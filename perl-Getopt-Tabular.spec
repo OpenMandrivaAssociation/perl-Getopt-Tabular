@@ -1,15 +1,13 @@
 %define upstream_name	 Getopt-Tabular
-%define upstream_version 0.3
-
 Name:		perl-%{upstream_name}
-Version:	%perl_convert_version %{upstream_version}
-Release:	8
+Version:	0.3
+Release:	9
 
 Summary:	Table-driven argument parsing for Perl 5
 License:	GPL+ or Artistic
 Group:		Development/Perl
-Url:        https://search.cpan.org/dist/%{upstream_name}
-Source0:	http://www.cpan.org/modules/by-module/Algorithm/%{upstream_name}-%{upstream_version}.tar.bz2
+Url:        https://metacpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Algorithm/%{upstream_name}-%{version}.tar.bz2
 
 BuildRequires:	make
 BuildRequires:	perl-devel
@@ -29,7 +27,7 @@ If there are any invalid options, GetOptions will print an error message and
 return 0.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{upstream_name}-%{version}
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor
@@ -49,9 +47,7 @@ perl Makefile.PL INSTALLDIRS=vendor
 %changelog
 * Fri Feb 12 2010 Jérôme Quelin <jquelin@mandriva.org> 0.300.0-1mdv2010.1
 + Revision: 504892
-- rebuild using %%perl_convert_version
-
-* Fri Sep 04 2009 Thierry Vignaud <tv@mandriva.org> 0.3-8mdv2010.0
+- rebuild using %0.3 Fri Sep 04 2009 Thierry Vignaud <tv@mandriva.org> 0.3-8mdv2010.0
 + Revision: 430460
 - rebuild
 
